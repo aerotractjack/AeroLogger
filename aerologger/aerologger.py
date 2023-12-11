@@ -4,7 +4,7 @@ from filelock import FileLock
 
 class AeroLogger:
 
-    def __init__(self, name, log_file, maxBytes=10240, backup_count=5):
+    def __init__(self, name, log_file, maxBytes=20480, backup_count=5):
         self.name = name
         self.log_file = log_file
         self.maxBytes = maxBytes
