@@ -2,11 +2,13 @@ import logging
 import logging.handlers
 from filelock import FileLock
 
+log_base = "/home/aerotract/microservice_logs/"
+
 class AeroLogger:
 
     def __init__(self, name, log_file, maxBytes=20480, backup_count=5):
         self.name = name
-        self.log_file = log_file
+        self.log_file = log_base + log_file
         self.maxBytes = maxBytes
         self.backup_count = backup_count
         self.lock_file = self.log_file + ".lock"
