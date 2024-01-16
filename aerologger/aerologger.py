@@ -23,16 +23,18 @@ class AeroLogger:
         file_handler.setFormatter(formatter)
         if not logger.handlers:
             logger.addHandler(file_handler)
-        return logger
+        return logger, file_handler
     
     def info(self, msg):
         with FileLock(self.lock_file):
-            l = self.get_logger()
+            l, fh = self.get_logger()
             l.info(msg)
             del l
+            fh.close()
 
     def error(self, msg):
         with FileLock(self.lock_file):
-            l = self.get_logger()
+            l, fh = self.get_logger()
             l.error(msg)
             del l
+            fh.close()
